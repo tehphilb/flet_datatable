@@ -29,6 +29,9 @@ class AppHeader(UserControl):
             width=320,
             bgcolor="white10",
             border_radius=6,
+            opacity = 0,
+            animate_opacity=320,
+            padding=8,
             content=Row(
                 spacing=10,
                 vertical_alignment=CrossAxisAlignment.CENTER,
@@ -49,14 +52,28 @@ class AppHeader(UserControl):
             ),
         )
 
+    def appHeaderAvatar(self):
+        # here a user avatar can be added
+        return Container(
+            content=IconButton(icons.PERSON)
+        )
 
+    def showSearchBar(self, e): # TDOD: add logig that the saerch bar does not disappear as long the seach has not submitted
+        # manage when the user hovers over the header that the search bar is shown
+        if e.data == 'true':
+            self.controls[0].content.controls[1].opacity = 1 # accesing the appHeaderSearch opacity
+            self.controls[0].content.controls[1].update()
+        else:
+            self.controls[0].content.controls[1].content.controls[1].value = "" # set emty string as soon the search bar disappear
+            self.controls[0].content.controls[1].opacity = 0
+            self.controls[0].content.controls[1].update()
 
     def build(self):
         self.appHeaderInstance()
 
         return Container(
             expand=True,
-            # on_hover=lambda e: self.showSearchBar(e),
+            on_hover=lambda e: self.showSearchBar(e),
             height=60,
             bgcolor="#3f2a56",
             border_radius=border_radius.only(topLeft=15, topRight=15,),
@@ -67,6 +84,7 @@ class AppHeader(UserControl):
                 controls=[
                     self.appHeaderBrand(),
                     self.appHeaderSearch(),
+                    self.appHeaderAvatar(),
                 ],
             ),
         )
