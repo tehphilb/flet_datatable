@@ -7,6 +7,8 @@ from controls import addToControlReference, returnControlReference
 controlMap = returnControlReference()
 
 # main class
+
+
 class AppHeader(UserControl):
     def __init__(self):
         super().__init__()
@@ -16,11 +18,11 @@ class AppHeader(UserControl):
         # key => "AppHeader" and the value => self (instance of the class, the object location in memory)
         addToControlReference("AppHeader", self)
 
-### Header inner components
+# Header inner components
     def appHeaderBrand(self):
         # here the brand can be set
         return Container(
-            content=Text("Brand", size=15)
+            content=Text("Brand", size=20, color="white")
         )
 
     def appHeaderSearch(self):
@@ -29,23 +31,28 @@ class AppHeader(UserControl):
             width=320,
             bgcolor="white10",
             border_radius=6,
-            opacity = 0,
+            opacity=0,
             animate_opacity=320,
             padding=8,
             content=Row(
                 spacing=10,
                 vertical_alignment=CrossAxisAlignment.CENTER,
                 controls=[
-                    Icon(name=icons.SEARCH_ROUNDED, size=18, opacity=0.85),
+                    Icon(name=icons.SEARCH_ROUNDED,
+                         color="white", size=18, opacity=0.85),
                     TextField(
                         border_color="transparent",
                         height=20,
-                        text_size=14, #TDOD: add text_style = FontWeight.W_100
+                        text_size=14,
+                        # TDOD: add text_style = FontWeight.W_100
+                        text_style=TextStyle(
+                            color="white", weight=FontWeight.W_300),
                         content_padding=0,
                         cursor_color="white",
                         cursor_width=0.7,
                         color="white",
                         hint_text="Search",
+                        hint_style=TextStyle(color="white"),
                         # on_change=lambda e: self.filterDataTable(e),
                     ),
                 ],
@@ -58,13 +65,16 @@ class AppHeader(UserControl):
             content=IconButton(icons.PERSON)
         )
 
-    def showSearchBar(self, e): # TDOD: add logig that the saerch bar does not disappear as long the seach has not submitted
+    # TDOD: add logig that the saerch bar does not disappear as long the seach has not submitted
+    def showSearchBar(self, e):
         # manage when the user hovers over the header that the search bar is shown
         if e.data == 'true':
-            self.controls[0].content.controls[1].opacity = 1 # accesing the appHeaderSearch opacity
+            # accesing the appHeaderSearch opacity
+            self.controls[0].content.controls[1].opacity = 1
             self.controls[0].content.controls[1].update()
         else:
-            self.controls[0].content.controls[1].content.controls[1].value = "" # set emty string as soon the search bar disappear
+            # set emty string as soon the search bar disappear
+            self.controls[0].content.controls[1].content.controls[1].value = ""
             self.controls[0].content.controls[1].opacity = 0
             self.controls[0].content.controls[1].update()
 

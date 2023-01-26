@@ -17,6 +17,9 @@ def main(page: Page):
                 AppHeader(),
                 Divider(height=2, color="transparent"),
                 AppForm(),
+                Column(
+                    scroll='hidden',
+                ),
             ]
         )
     )
@@ -27,4 +30,4 @@ if __name__ == "__main__":
     app(target=main)
 
 
-"https://www.youtube.com/watch?v=39AH8tnTf4E    30:32"
+"https://www.youtube.com/watch?v=39AH8tnTf4E    42:27"
