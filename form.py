@@ -34,19 +34,19 @@ class AppForm(UserControl):
             label=name,
             label_style=TextStyle(
                 size=10,
-                color="#2a2c36",
+                #color="#2a2c36",
                 weight=FontWeight.W_400,
             ),
-            border_color="#2a2c36",
+            #border_color="#2a2c36",
             border_width=0.3,
             height=52,
             #filled=True,
             text_size=14,  # TDOD: add text_style = FontWeight.W_100
             #content_padding=0,
-            cursor_color="#2a2c36",
+            #cursor_color="#2a2c36",
             cursor_width=0.9,
             # cursor_height=18,
-            color="#2a2c36",
+            #color="#2a2c36",
             # on_change=lambda e: self.filterDataTable(e),
         )
 

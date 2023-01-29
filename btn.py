@@ -2,14 +2,33 @@
 
 from flet import *
 from controls import returnControlReference, addToControlReference
-# from form_handler import FormHandler
+from form_helper import FormHelper
 
 # get the global map dict
 control_map = returnControlReference()
 
-# this method will handle the user input data
+# these methods will handle the user input data
+
+
+def updateText(e):
+    e.control.content.controls[0].read_only = False
+    e.control.content.controls[0].update()
+
 def getInputData(e):
-    pass
+    for key, value in control_map.items():
+        if key == "AppForm":
+            data = DataRow(cells=[])
+            for userInput in value.controls[0].content.content.controls[0].controls[:]:
+                data.cells.append(DataCell(FormHelper(userInput.value),
+                                  on_double_tap=lambda e: updateText(e)))
+            for userInput in value.controls[0].content.content.controls[1].controls[:]:
+                data.cells.append(DataCell(FormHelper(userInput.value),
+                                  on_double_tap=lambda e: updateText(e)))
+
+        if key == "AppDataTable":
+            value.controls[0].controls[0].rows.append(data)
+        #     # value.controls[0].controls[0].append(data)  # append the data to the table
+            value.controls[0].controls[0].update()  # update the table
 
 
 def returnFromButton():
@@ -23,7 +42,7 @@ def returnFromButton():
                 controls=[
                     Icon(
                         name=icons.ADD_ROUNDED,
-                        
+
                     ),
                     Text("Add to table",
                          weight=FontWeight.W_500,),
@@ -36,7 +55,7 @@ def returnFromButton():
                     "": "#f3f3f4",
                 },
             ),
-            #height=52,
-            #width=235
+            # height=52,
+            # width=235
         )
     )
