@@ -8,7 +8,7 @@ from data_table import AppDataTable  # data table
 
 def main(page: Page):
     # page.bgcolor = "#f3f3f4"
-    page.padding = 20
+    # page.padding = 20
     page.add(
         # main column where each component will be place
 
@@ -16,7 +16,7 @@ def main(page: Page):
             expand=True,
             controls=[
                 # class instances come here
-                # AppHeader(),
+                AppHeader(),
                 Divider(height=2, color="transparent"),
                 AppForm(),
                 Column(
@@ -31,8 +31,9 @@ def main(page: Page):
             ]
         )
     )
+    page.theme_mode = ThemeMode.LIGHT
+    page.theme = Theme(color_scheme_seed="#3b2c53")
     page.update()
-    pass
 
 
 if __name__ == "__main__":
