@@ -9,8 +9,8 @@ class FormHelper(UserControl):
         super().__init__()
 
     def saveValue(self, e):
-        e.control.read_only = True
-        e.control.update()
+        self.controls[0].read_only = True
+        self.controls[0].update()
 
     def build(self):
         return TextField(

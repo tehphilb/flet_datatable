@@ -78,6 +78,8 @@ class AppHeader(UserControl):
     #         self.controls[0].content.controls[1].opacity = 0
     #         self.controls[0].content.controls[1].update()
 
+    def filterData
+
     def build(self):
         self.appHeaderInstance()
 
